@@ -33,55 +33,33 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-
-//    if ($conn->connect_error) {
-//        throw new Exception("Er is iets mis gegaan met de pagina laden.");
-//    }
-
-try{
-
-    echo"a";
-}catch{
-
-};
+    $email = $_POST["email"];
+    $psswd = PASSWORD_HASH($_POST["ww"], PASSWORD_DEFAULT);
+    $name = $_POST["user"];
 
 
-    function Exists()
-    {
+    try {
+        require_once("../../Classes/MysqlConnection.php");
+        $mysql = new MysqlConnection();
 
-        $conn = new mysqli("localhost", "php_user", "123", "login");
-        $email = $_POST["email"];
-
-
-        $sql = "SELECT count(1) FROM login WHERE Email = ?";
-        $stmt = $conn->prepare($sql);
-
-        $stmt->bind_param('s', $email);
-
-        $stmt->execute();
-
-        $exists = "";
-        $stmt->bind_result($exists);
-
-        $stmt->fetch();
-        $stmt->close();
-        if ($exists) {
-            return true;
-
-        } else {
-            return false;
-        }
+        require_once("../../Classes/Makeaccount.php.php");
+        $account = new Account();
 
 
+         if ($account->Exists($mysql->connect(),$email) == false) {
+             $account->CreateAccount($name, $psswd, $email, $mysql->connect());
+
+         }
+         else {
+
+             throw new Exception("Email adress bestaat al");
+         }
+    }catch (Exception $e) {
+        echo $e->getMessage();
     }
 
-    if (exists() == false) {
-        echo "a";
 
-    } else {
-        echo "Email adress bestaat al";
-        throw new Exception("Email adress bestaat al");
-    }
+
 
 
 //    $stmt = $conn->prepare("INSERT INTO `login`(`Username`, `Password`, `Email`) VALUES (?,?,?);");

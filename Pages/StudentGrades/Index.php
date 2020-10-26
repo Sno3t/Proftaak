@@ -16,6 +16,10 @@
 
 <h>Welcome to the homepage!</h> <br>
 
+Van welk Vak wil je de Punten zien?
+<a href="">Nederlands</a>
+<a href="">Engels</a>
+
 
 <!--<table>-->
 <!--    <thead>-->
@@ -39,6 +43,8 @@
 
 <?php
 
+
+// laat cijfers zien van Nederlands
 
 
 
