@@ -1,18 +1,21 @@
 <?php
 
-class Login
+class Login2
 {
 
     private $username;
     private $password;
     private $conn;
+    private $email;
 
 
-    public function __construct($Username, $Password, $Conn)
+    public function __construct($Username, $Password, $Email, $Conn)
     {
         $this->username = $Username;
         $this->password = $Password;
+        $this->email = $Email;
         $this->conn = $Conn;
+
 
 
     }
@@ -26,7 +29,8 @@ class Login
 //            die;
             throw new Exception("No username inserted");
         } else {
-            return mysqli_real_escape_string($this->conn, $this->username);
+            return  $this->username;
+
         }
     }
 
@@ -39,7 +43,22 @@ class Login
             throw new Exception("No password inserted");
         } else {
 
-             return mysqli_real_escape_string($this->conn, $this->password);
+             return $this->password;
+
+        }
+
+
+    }
+
+    function ChecksEmail()
+    {
+        if (empty($this->email)) {
+//            echo "Please enter your password.";
+//            die;
+            throw new Exception("No email inserted");
+        } else {
+
+            return $this->email;
 
         }
 
@@ -48,16 +67,19 @@ class Login
 
 
 
-    function Login($username,$password)
+
+    function Login($username,$password, $email)
     {
 
-        $sql = "SELECT ID, Username, Password, Admin FROM login WHERE BINARY Username = ?";
+        $sql = "SELECT ID, Username, Password, Admin FROM login WHERE BINARY Username = ? AND Email = ?";
 
         if ($stmt = mysqli_prepare($this->conn, $sql)) {
 
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_email);
 
             $param_username = $username;
+            $param_email = $email;
+
 
             if (mysqli_stmt_execute($stmt)) {
 
@@ -85,7 +107,7 @@ class Login
 
                             }
 
-                           echo "aaa";
+                           echo "You have logged in!";
                             exit;
 
                         } else {
@@ -94,6 +116,7 @@ class Login
 //                            header('refresh:2;url=login.php');
                             throw new Exception("Verkeerd wachtwoord of username1");
 
+
                         }
                     }
                 } else {
@@ -101,6 +124,7 @@ class Login
 //                    echo "Verkeerd wachtwoord of username";
 //                    header('refresh:2;url=login.php');
                     throw new Exception("Verkeerd wachtwoord of username2");
+
 
                 }
             } else {

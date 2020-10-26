@@ -14,28 +14,36 @@
 </head>
 <body>
 
-<a href="/Pages/LoginPage/login.php">Login!</a>
+<h>Welcome to the homepage!</h> <br>
+<a href="/Pages/LoginPage/newlogin1.php">Login!</a>
 
-<table>
-    <thead>
-    <tr>
-        <td>Student</td>
-        <td>Datum</td>
-        <td>Engels</td>
-        <td>Nederlands</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <td>Student</td>-->
+<!--        <td>Datum</td>-->
+<!--        <td>Engels</td>-->
+<!--        <td>Nederlands</td>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--        <td>1</td>-->
+<!--        <td>2</td>-->
+<!--        <td>3</td>-->
+<!--        <td>4</td>-->
+<!---->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
 
-    </tr>
-    </tbody>
-</table>
+<?php
 
+
+
+
+
+?>
 
 </body>
 </html>

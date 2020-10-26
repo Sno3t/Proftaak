@@ -13,6 +13,9 @@
     <input type="text" value="" name="user"> <br>
     Wachtwoord:
     <input type="password" value="" name="ww"> <br>
+    Email:
+    <input type="text" value="" name="Email"> <br>
+
 
     <input type="submit" value="Inloggen">
 </form>
@@ -25,23 +28,17 @@
 
 $name = $_POST["user"];
 $pass = $_POST["ww"];
+$email = $_POST["Email"];
 
 try {
-    require_once("Login/MysqlConnection.php");
+    require_once("MysqlConnection.php");
     $mysql = new MysqlConnection();
 
 
-    require_once("phpfile.php");
-    $login = new Login($name, $pass, $mysql->getConnection());
-    $login->ChecksUsername();
-    $login->ChecksPassword();
+    require_once("newlogin3_email.php");
+    $login = new Login2($name, $pass, $email, $mysql->connect());
 
-    var_dump($login->ChecksUsername());
-    echo "<br>";
-    var_dump($login->ChecksPassword());
-    echo "<br>";
-
-    $login->Login( $login->ChecksUsername(), $login->ChecksPassword());
+    $login->Login( $login->ChecksUsername(), $login->ChecksPassword(), $login->ChecksEmail());
 
 
 } catch (Exception $e) {
