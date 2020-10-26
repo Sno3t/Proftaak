@@ -16,8 +16,6 @@ class Login2
         $this->email = $Email;
         $this->conn = $Conn;
 
-
-
     }
 
 
@@ -29,7 +27,7 @@ class Login2
 //            die;
             throw new Exception("No username inserted");
         } else {
-            return  $this->username;
+            return trim($this->username);
 
         }
     }
@@ -43,7 +41,7 @@ class Login2
             throw new Exception("No password inserted");
         } else {
 
-             return $this->password;
+            return trim($this->password);
 
         }
 
@@ -58,7 +56,7 @@ class Login2
             throw new Exception("No email inserted");
         } else {
 
-            return $this->email;
+            return trim($this->email);
 
         }
 
@@ -66,9 +64,7 @@ class Login2
     }
 
 
-
-
-    function Login($username,$password, $email)
+    function Login($username, $password, $email)
     {
 
         $sql = "SELECT ID, Username, Password, Admin FROM login WHERE BINARY Username = ? AND Email = ?";
@@ -107,7 +103,7 @@ class Login2
 
                             }
 
-                           echo "You have logged in!";
+                            echo "You have logged in!";
                             exit;
 
                         } else {
