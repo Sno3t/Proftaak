@@ -15,7 +15,7 @@
 <body>
 
 <h>Welcome to the homepage!</h> <br>
-<a href="/Pages/LoginPage/newlogin1.php">Login!</a>
+<a href="Pages/LoginPage/newlogin1.php">Login!</a>
 
 <!--<table>-->
 <!--    <thead>-->
