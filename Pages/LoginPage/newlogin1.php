@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <td><input type="submit" value="Inloggen"></td>
-            <td><a href="Pages/LoginPage/make account.php">No account?</a></td>
+            <td><a href="makeaccount.php">No account?</a></td>
         </tr>
     </table>
 </form>

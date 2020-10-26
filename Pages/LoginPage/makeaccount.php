@@ -23,17 +23,27 @@ if ($conn->connect_error) {
 
 ?>
 
-<h1> Make an account</h1>
+<h1>Account maken</h1>
 <form action="" method="post">
-    Voornaam:
-    <input type="text" value=""  name="user"> <br>
-    Wachtwoord:
-    <input type="password" value="" name="ww"> <br>
-    Email
-    <input type="text" value="" name="email" <br> <br>
-    <input type="submit" value="Create account">
+    <table>
+        <tr>
+            <td>Voornaam</td>
+            <td><input type="text" value=""  name="user"></td>
+        </tr>
+        <tr>
+            <td>Wachtwoord</td>
+            <td><input type="password" value="" name="ww"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" value="" name="email"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Account aanmaken"></td>
+        </tr>
+    </table>
 </form>
-
 
 
 

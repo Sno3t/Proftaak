@@ -23,9 +23,8 @@ class Login2
     {
 
         if (empty ($this->username)) {
-//            echo "Please enter username.";
-//            die;
             throw new Exception("No username inserted");
+
         } else {
             return trim($this->username);
 
@@ -36,30 +35,24 @@ class Login2
     function ChecksPassword()
     {
         if (empty($this->password)) {
-//            echo "Please enter your password.";
-//            die;
             throw new Exception("No password inserted");
-        } else {
 
+        } else {
             return trim($this->password);
 
         }
-
 
     }
 
     function ChecksEmail()
     {
         if (empty($this->email)) {
-//            echo "Please enter your password.";
-//            die;
             throw new Exception("No email inserted");
-        } else {
 
+        } else {
             return trim($this->email);
 
         }
-
 
     }
 
@@ -75,7 +68,6 @@ class Login2
 
             $param_username = $username;
             $param_email = $email;
-
 
             if (mysqli_stmt_execute($stmt)) {
 
@@ -102,42 +94,31 @@ class Login2
                                 $_SESSION ['id'] = $id;
 
                             }
-
-                            echo "You have logged in!";
+                            echo "a";
+                            header("../StudentGrades/Index.php");
                             exit;
 
                         } else {
                             // Verkeerd wachtwoord
-//                            echo "Verkeerd wachtwoord of username";
-//                            header('refresh:2;url=login.php');
-                            throw new Exception("Verkeerd wachtwoord of username1");
-
+                            throw new Exception("Verkeerd wachtwoord of username");
 
                         }
                     }
                 } else {
                     // Username bestaat niet
-//                    echo "Verkeerd wachtwoord of username";
-//                    header('refresh:2;url=login.php');
-                    throw new Exception("Verkeerd wachtwoord of username2");
+                    throw new Exception("Verkeerd wachtwoord of username");
 
 
                 }
             } else {
                 // statement gaat fout
-//                echo "Dit hoort niet te gebeuren, go back.";
                 throw new Exception("Dit hoort niet te gebeuren, ga terug");
 
             }
-
-
             mysqli_stmt_close($stmt);
-        }
 
+        }
         mysqli_close($this->conn);
 
-
     }
-
-
 }
