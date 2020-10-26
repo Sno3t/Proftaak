@@ -94,8 +94,7 @@ class Login2
                                 $_SESSION ['id'] = $id;
 
                             }
-                            echo "a";
-                            header("../StudentGrades/Index.php");
+                            header("location: ../StudentGrades/Index.php");
                             exit;
 
                         } else {

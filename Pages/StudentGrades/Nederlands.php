@@ -14,29 +14,65 @@
 </head>
 <body>
 
+
 <?php
-$sql = "SELECT studenten.ID,studenten.Naam, nederlands.Cijfer, nederlands.Datum FROM ( nederlands INNER JOIN studenten ON nederlands.Studenten_ID = studenten.ID);";
-
-if ($stmt = mysqli_prepare($this->conn, $sql)) {
-
-    mysqli_stmt_bind_param($stmt, "ssss", $ID, $naam, $cijfer, $datum);
 
 
-    if (mysqli_stmt_execute($stmt)) {
+function Results()
+{
 
-        mysqli_stmt_store_result($stmt);
+    $sql = "SELECT studenten.ID,studenten.Naam, nederlands.Cijfer, nederlands.Datum FROM ( nederlands INNER JOIN studenten ON nederlands.Studenten_ID = studenten.ID);";
+
+    $mysqli = new mysqli("localhost", "php_user", "123", "cijfers");
+
+    if (mysqli_connect_errno()) {
+        printf("Connect failed: %s\n", mysqli_connect_error());
+        exit();
+    }
+
+    if ($stmt = $mysqli->prepare($sql)) {
+        $stmt->execute();
 
 
-            mysqli_stmt_bind_result($stmt, $id, $ID, $naam, $cijfer, $datum);
+        $stmt->bind_result($ID, $naam, $cijfer, $datum);
 
-            if (mysqli_stmt_fetch($stmt)) {
+
+        while ($stmt->fetch()) {
+
+            echo "  
+       <tr>
+        <td>" . $ID . "</td>
+        <td>" . $naam . "</td>
+        <td>" . $cijfer . "</td>
+        <td>" . $datum . "</td>
+        <td><a href=''>Wijzigen?</a></td>
+       </tr>";
 
         }
+        $stmt->close();
+
     }
-    throw new Exception("Er gaat iets fout");
+    $mysqli->close();
+
 }
 
+
 ?>
+
+
+<table>
+    <thead>
+    <tr>
+        <td>Studenten ID</td>
+        <td>Naam</td>
+        <td>Cijfer</td>
+        <td>Datum</td>
+    </tr>
+    </thead>
+    <tbody>
+        <?= Results() ?>
+    </tbody>
+</table>
 
 </body>
 </html>
