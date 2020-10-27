@@ -4,11 +4,13 @@ class Engels{
     public function EngelsResultaten($mysqli)
     {
 
-        $sql = "SELECT studenten.ID,studenten.Naam, engels.Cijfer, engels.Datum FROM ( engels INNER JOIN studenten ON engels.Studenten_ID = studenten.ID);";
+        $sql = "SELECT studenten.ID,studenten.Naam, engels.Cijfer, engels.toetsNaam, engels.Datum FROM ( engels INNER JOIN studenten ON engels.Studenten_ID = studenten.ID);";
         if ($stmt = $mysqli->prepare($sql)) {
             $stmt->execute();
 
-            $stmt->bind_result($ID, $naam, $cijfer, $datum);
+            $stmt->bind_result($ID, $naam, $cijfer, $testname, $datum);
+
+
 
             echo "
             <table>
@@ -16,6 +18,7 @@ class Engels{
                 <tr>
                     <td>Naam</td>
                     <td>Cijfer</td>
+                    <td>Toets naam</td>
                     <td>Datum</td>
                 </tr>
                 </thead>
@@ -26,6 +29,7 @@ class Engels{
        <tr>
         <td>" . $naam . "</td>
         <td>" . $cijfer . "</td>
+         <td>" . $testname . "</td>
         <td>" . $datum . "</td>
         <td><a href='../Edits/Wijzigen.php?id= " . $ID . " '>Wijzigen?</a></td>
        </tr>";
