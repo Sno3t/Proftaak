@@ -34,7 +34,7 @@ class Engels{
             echo "
               <tr>
                 <td></td>
-                <td colspan='3'><a href=''>Nieuw cijfer invoeren?</a></td>
+                <td colspan='3'><a href='../Edits/toevoegen.php?engels=true'>Nieuw cijfer invoeren?</a></td>
             </tr>
                 </tbody>
             </table>";
