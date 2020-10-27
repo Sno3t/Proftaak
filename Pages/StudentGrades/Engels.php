@@ -1,23 +1,19 @@
 <?php
+class Engels{
 
+    public function EngelsResultaten($mysqli)
+    {
 
-function Results()
-{
+        $sql = "SELECT studenten.ID,studenten.Naam, engels.Cijfer, engels.Datum FROM ( engels INNER JOIN studenten ON engels.Studenten_ID = studenten.ID);";
+        if ($stmt = $mysqli->prepare($sql)) {
+            $stmt->execute();
 
-    $mysqli = new mysqli("localhost", "php_user", "123", "cijfers");
+            $stmt->bind_result($ID, $naam, $cijfer, $datum);
 
-
-    $sql = "SELECT studenten.ID,studenten.Naam, engels.Cijfer, engels.Datum FROM ( engels INNER JOIN studenten ON engels.Studenten_ID = studenten.ID);";
-    if ($stmt = $mysqli->prepare($sql)) {
-        $stmt->execute();
-
-        $stmt->bind_result($ID, $naam, $cijfer, $datum);
-
-        echo "
+            echo "
             <table>
                 <thead>
                 <tr>
-                    <td>Studenten ID</td>
                     <td>Naam</td>
                     <td>Cijfer</td>
                     <td>Datum</td>
@@ -25,24 +21,28 @@ function Results()
                 </thead>
                 <tbody>";
 
-        while ($stmt->fetch()) {
-            echo "  
+            while ($stmt->fetch()) {
+                echo "  
        <tr>
-        <td>" . $ID . "</td>
         <td>" . $naam . "</td>
         <td>" . $cijfer . "</td>
         <td>" . $datum . "</td>
-        <td><a href=''>Wijzigen?</a></td>
+        <td><a href='../Edits/Wijzigen.php?id= " . $ID . " '>Wijzigen?</a></td>
        </tr>";
 
-        }
-        echo "
+            }
+            echo "
+              <tr>
+                <td></td>
+                <td colspan='3'><a href=''>Nieuw cijfer invoeren?</a></td>
+            </tr>
                 </tbody>
             </table>";
-        $stmt->close();
+            $stmt->close();
 
+        }
+        $mysqli->close();
     }
-    $mysqli->close();
 
 }
 

@@ -3,7 +3,7 @@ class Account
 {
 
 
-    public function Exists($conn, $email)
+    public function Exists($conn, string $email)
     {
 
         $sql = "SELECT count(1) FROM login WHERE Email = ?";

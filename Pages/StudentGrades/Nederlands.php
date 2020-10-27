@@ -3,20 +3,12 @@
 class Nederlands
 {
 
-    private $conn;
 
-    public function __construct($Conn)
-    {
-        $this->conn = $Conn;
-
-    }
-
-    public function Results()
+    public function NederlandsResultaten($mysqli)
     {
 
-        $sql = "SELECT studenten.ID,studenten.Naam, nederlands.Cijfer, nederlands.Datum FROM (nederlands INNER JOIN studenten ON nederlands.Studenten_ID = studenten.ID);";
-
-        if ($stmt = $this->conn->prepare($sql)) {
+        $sql = "SELECT studenten.ID,studenten.Naam, nederlands.Cijfer, nederlands.Datum FROM ( nederlands INNER JOIN studenten ON nederlands.Studenten_ID = studenten.ID);";
+        if ($stmt = $mysqli->prepare($sql)) {
             $stmt->execute();
 
             $stmt->bind_result($ID, $naam, $cijfer, $datum);
@@ -25,7 +17,6 @@ class Nederlands
             <table>
                 <thead>
                 <tr>
-                    <td>Studenten ID</td>
                     <td>Naam</td>
                     <td>Cijfer</td>
                     <td>Datum</td>
@@ -36,19 +27,25 @@ class Nederlands
             while ($stmt->fetch()) {
                 echo "  
        <tr>
-        <td>" . $ID . "</td>
         <td>" . $naam . "</td>
         <td>" . $cijfer . "</td>
         <td>" . $datum . "</td>
-        <td><a href=''>Wijzigen?</a></td>
+        <td><a href='../Edits/Wijzigen.php?id= " . $ID . " '>Wijzigen?</a></td>
        </tr>";
 
             }
             echo "
+            <tr>
+                <td></td>
+                <td colspan='3'><a href=''>Nieuw cijfer invoeren?</a></td>
+            </tr>
                 </tbody>
             </table>";
             $stmt->close();
 
         }
+        $mysqli->close();
     }
+
 }
+

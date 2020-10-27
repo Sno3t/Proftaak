@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         require_once("../../Classes/MysqlConnection.php");
         $mysql = new MysqlConnection();
 
-        require_once("../../Classes/Makeaccount.php.php");
+        require_once("../../Classes/Makeaccount.php");
         $account = new Account();
 
 
