@@ -7,6 +7,7 @@ class MysqlConnection
     private $host;
     private $pass;
     private $db;
+    private $db2;
 
     public function __construct()
     {
@@ -14,6 +15,7 @@ class MysqlConnection
         $this->host = "localhost";
         $this->pass = "123";
         $this->db = "login";
+        $this->db = "cijfers";
     }
 
 
@@ -22,12 +24,11 @@ class MysqlConnection
         return new mysqli($this->host, $this->user, $this->pass, $this->db);
     }
 
-
-    public function getConnection()
+    public function connectCijfer()
     {
-        return $this->connect();
-
+        return new mysqli($this->host, $this->user, $this->pass, $this->db2);
     }
+
 }
 
 

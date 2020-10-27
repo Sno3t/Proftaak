@@ -21,33 +21,19 @@ Van welk Vak wil je de Punten zien?
 <a href="">Engels</a>
 
 
-<!--<table>-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <td>Student</td>-->
-<!--        <td>Datum</td>-->
-<!--        <td>Engels</td>-->
-<!--        <td>Nederlands</td>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr>-->
-<!--        <td>1</td>-->
-<!--        <td>2</td>-->
-<!--        <td>3</td>-->
-<!--        <td>4</td>-->
-<!---->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
-
 <?php
 
+try{
+    require_once("../../Classes/MysqlConnection.php");
+    $mysql = new MysqlConnection();
 
-// laat cijfers zien van Nederlands
+    require_once("Nederlands.php");
+    $neder = new Nederlands($mysql->connectCijfer());
+    $neder->Results();
 
-
-
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
 
 ?>
 
