@@ -22,20 +22,20 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['submit'])) {
-        require_once("../../Classes/MysqlConnection.php");
-        $mysql = new MysqlConnection();
-        $mysql->connectCijfer();
+
+
+//        require_once("../../Classes/MysqlConnection.php");
+//        $mysql = new MysqlConnection();
+        $da = new mysqli("localhost", "php_user", "123", "cijfers"); // Om een of andere reden werkt de mysql connection class niet op deze file specifiek. "MYSQL server has gone away"
 
         $Cijfer = $_POST['Cijfer'];
-        echo $ID = $_GET['id'];
+        $ID = $_GET['id'];
 
-        $stmt = $mysql->connectCijfer()->prepare("UPDATE engels SET Cijfer=? WHERE ID =" . $ID . ";");
+        $stmt = $da->prepare("UPDATE engels SET Cijfer=? WHERE ID =?;");
 
-        $bind = $stmt->bind_param('s', $Cijfer);
+        $stmt->bind_param('ss',  $Cijfer, $ID);
 
-        $bind = $stmt->execute();
-
-        $stmt->close();
+        $stmt->execute();
 
     }
 }

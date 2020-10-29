@@ -19,10 +19,6 @@
             <td><input type="text" name="Toetsnaam"></td>
         </tr>
         <tr>
-            <td>StudentenID</td>
-            <td><input type="text" name="LeerlingID"></td>
-        </tr>
-        <tr>
             <td>LerarenID</td>
             <td><input type="text" name="LerarenID"> <br></td>
         </tr>

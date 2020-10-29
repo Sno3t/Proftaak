@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Kras Hosting</title>
+    <title>Punten overzicht</title>
     <meta charset="utf-8">
     <style>
         table, th, td {
@@ -13,8 +13,9 @@
     </style>
 </head>
 <body>
+<a href="">Log out</a> <br>
 
-<h>Welcome to the homepage!</h> <br>
+<!--<h>Hello --><?//= $_SESSION['username']?><!--!</h> <br>-->
 
 Van welk Vak wil je de Punten zien? <br>
 <a href='index.php?Nederlands=true'>Nederlands</a>
@@ -25,6 +26,11 @@ Van welk Vak wil je de Punten zien? <br>
 
 
 <?php
+//if(isset($_SESSION['loggedin'])){
+//    header("location: ../LoginPage/newlogin1.php");
+//}
+
+
 require_once("../../Classes/MysqlConnection.php");
 $mysql = new MysqlConnection();
 

@@ -28,7 +28,7 @@ class Engels
             while ($stmt->fetch()) {
                 echo "  
        <tr>
-        <td>" . $naam . "</td>
+        <td><a href='Student.php?name= " . $naam . "'> " . $naam . "</a></td>
         <td>" . $cijfer . "</td>
          <td>" . $testname . "</td>
         <td>" . $datum . "</td>
