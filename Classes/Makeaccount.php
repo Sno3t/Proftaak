@@ -28,14 +28,15 @@ class Account
 
     public function CreateAccount($name, $psswd, $email, $conn)
     {
-        $stmt = $conn->prepare("INSERT INTO `login`(`Username`, `Password`, `Email`) VALUES (?,?,?);");
+        $stmt = $conn->prepare("INSERT INTO `login`(`ID`, `Admin`, `Username`, `Password`, `Email`) VALUES (DEFAULT, 0, ?,?,?);");
+//        echo $conn -> error;die;
         $stmt->bind_param('sss', $name, $psswd, $email);
 
-        if (mysqli_stmt_num_rows($stmt) == 1) {
-            $stmt->execute();
-            $stmt->close();
+//        if (mysqli_stmt_num_rows($stmt) == 1) {
+        $stmt->execute();
+        $stmt->close();
 
-        }
+        //    }
 
 
 

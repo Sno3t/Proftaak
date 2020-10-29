@@ -27,7 +27,7 @@
             <td><input type="text" name="LerarenID"> <br></td>
         </tr>
         <tr>
-            <td><input type="submit" name="submit"></td>
+            <td><input type="submit" name="submit" value="Cijfer Toevoegen"></td>
         </tr>
     </table>
 </form>
@@ -39,34 +39,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['submit'])) {
 
         if ($_GET['engels'] == true) {
-            try {
-                if (!empty($_POST['Cijfer']) && !empty($_POST['Datum'] && !empty($_POST['Toetsnaam'] && !empty($_POST['LeerlingID'] && !empty($_POST['LerarenID']))))) {
-                    $Cijfer = $_POST['Cijfer'];
-                    $Datum = $_POST['Datum'];
-                    $Toetsnaam = $_POST['Toetsnaam'];
-                    $leerlingID = $_POST['LeerlingID'];
-                    $LerarenID = $_POST['LerarenID'];
 
-                } else {
-                    throw new Exception("Een van de variabelen is leeg.");
+
+
+            function Engels()
+            {
+                try {
+                    if (!empty($_POST['Cijfer']) && !empty($_POST['Datum'] && !empty($_POST['Toetsnaam'] && !empty($_POST['LeerlingID'] && !empty($_POST['LerarenID']))))) {
+                        $Cijfer = $_POST['Cijfer'];
+                        $Datum = $_POST['Datum'];
+                        $Toetsnaam = $_POST['Toetsnaam'];
+                        $leerlingID = $_POST['LeerlingID'];
+                        $LerarenID = $_POST['LerarenID'];
+
+                    } else {
+                        throw new Exception("Een van de variabelen is leeg.");
+                    }
+
+
+                    require_once("../../Classes/MysqlConnection.php");
+                    $mysql = new MysqlConnection();
+
+                    require_once("CijferAdd.php");
+                    $eng = new NieuwEngelsCijfer();
+
+                    $eng->NewGradeEn($Cijfer, $Datum, $Toetsnaam, $leerlingID, $LerarenID, $mysql->connectCijfer());
+
+                    echo "Cijfer succesfull toegevoegt";
+                    sleep("2");
+                    header("location: ../StudentGrades/Index.php");
+
+                } catch (Exception $e) {
+                    echo $e->getMessage();
                 }
-
-
-                require_once("../../Classes/MysqlConnection.php");
-                $mysql = new MysqlConnection();
-
-                require_once("CijferAdd.php");
-                $eng = new NieuwEngelsCijfer();
-
-                $eng->NewGradeEn($Cijfer, $Datum, $Toetsnaam, $leerlingID, $LerarenID, $mysql->connectCijfer());
-
-            } catch (Exception $e) {
-                echo $e->getMessage();
             }
+
+
+
+
         }
 
 
-        if ($_GET['nederlands'] == true) {
+        function Nederlands()
+        {
             try {
                 if (!empty($_POST['Cijfer']) && !empty($_POST['Datum'] && !empty($_POST['Toetsnaam'] && !empty($_POST['LeerlingID'] && !empty($_POST['LerarenID']))))) {
                     $Cijfer = trim($_POST['Cijfer']);
@@ -90,7 +105,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             } catch (Exception $e) {
                 echo $e->getMessage();
+
             }
+        }
+
+
+
+        if (isset($_GET['engels'])) {
+            engels();
+
+
+        } elseif (isset($_GET['nederlands'])) {
+            Nederlands();
         }
     }
 }

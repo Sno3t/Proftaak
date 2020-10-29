@@ -33,7 +33,7 @@ if (isset($_GET['Engels'])) {
     try {
         require_once("Engels.php");
         $eng = new Engels();
-        $eng->EngelsResultaten($mysql->connect());
+        $eng->EngelsResultaten($mysql->connectCijfer());
 
     } catch (Exception $e) {
         echo $e->getMessage();
@@ -46,7 +46,7 @@ if (isset($_GET['Nederlands'])) {
     try {
     require_once("Nederlands.php");
     $nl = new Nederlands();
-    $nl->NederlandsResultaten($mysql->connect());
+    $nl->NederlandsResultaten($mysql->connectCijfer());
 
     } catch (Exception $e) {
         echo $e->getMessage();

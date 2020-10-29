@@ -31,7 +31,7 @@ class Engels{
         <td>" . $cijfer . "</td>
          <td>" . $testname . "</td>
         <td>" . $datum . "</td>
-        <td><a href='../Edits/Wijzigen.php?id= " . $ID . " '>Wijzigen?</a></td>
+        <td><a href='../Edits/Wijzigen.php?id=" . $ID . "&Cijfer=" . $cijfer. " '>Wijzigen?</a></td>
        </tr>";
 
             }

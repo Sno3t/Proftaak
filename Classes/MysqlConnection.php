@@ -15,7 +15,7 @@ class MysqlConnection
         $this->host = "localhost";
         $this->pass = "123";
         $this->db = "login";
-        $this->db = "cijfers";
+        $this->db2 = "cijfers";
     }
 
 

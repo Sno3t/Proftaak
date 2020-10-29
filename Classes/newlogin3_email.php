@@ -95,7 +95,7 @@ class Login2
 
                             }
                             echo "aaa";
-//                            header("location: makeaccount.php");
+                            header("location: ../StudentGrades/Index.php");
 //
 //                            if (headers_sent()) {
 //                                die("Error: headers already sent!");
