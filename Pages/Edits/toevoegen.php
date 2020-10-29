@@ -8,59 +8,89 @@
     <table>
         <tr>
             <td>Cijfer:</td>
-            <td><input name="Cijfer"></td>
+            <td><input type="text" name="Cijfer"></td>
         </tr>
         <tr>
             <td>Datum:</td>
-            <td><input name="Datum"></td>
+            <td><input type="text" name="Datum"></td>
         </tr>
         <tr>
             <td>Toetsnaam</td>
-            <td><input name="Toetsnaam2"></td>
+            <td><input type="text" name="Toetsnaam"></td>
         </tr>
         <tr>
             <td>StudentenID</td>
-            <td><input name="LeerlingID"></td>
+            <td><input type="text" name="LeerlingID"></td>
         </tr>
         <tr>
             <td>LerarenID</td>
-            <td><input name="LerarenID"> <br></td>
+            <td><input type="text" name="LerarenID"> <br></td>
         </tr>
         <tr>
-            <td><input type="submit"></td>
+            <td><input type="submit" name="submit"></td>
         </tr>
     </table>
 </form>
 
 <?php
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['submit'])) {
+
+        if ($_GET['engels'] == true) {
+            try {
+                if (!empty($_POST['Cijfer']) && !empty($_POST['Datum'] && !empty($_POST['Toetsnaam'] && !empty($_POST['LeerlingID'] && !empty($_POST['LerarenID']))))) {
+                    $Cijfer = $_POST['Cijfer'];
+                    $Datum = $_POST['Datum'];
+                    $Toetsnaam = $_POST['Toetsnaam'];
+                    $leerlingID = $_POST['LeerlingID'];
+                    $LerarenID = $_POST['LerarenID'];
+
+                } else {
+                    throw new Exception("Een van de variabelen is leeg.");
+                }
 
 
-if(!empty($_POST['Cijfer']) && !empty($_POST['Datum'] && !empty($_POST['Toetsnaam'] && !empty($_POST['LeerlingID'] && !empty($_POST['LerarenID']))))) {
-    $Cijfer = $_POST['Cijfer'];
-    $Datum = $_POST['Datum'];
-    $Toetsnaam = $_POST['Toetsnaam'];
-    $leerlingID = $_POST['LeerlingID'];
-    $LerarenID = $_POST['LerarenID'];
-} else{
-    throw new Exception("Variabelen is leeg");
-}
+                require_once("../../Classes/MysqlConnection.php");
+                $mysql = new MysqlConnection();
 
-    if (isset($_GET['Engels'])) {
+                require_once("CijferAdd.php");
+                $eng = new NieuwEngelsCijfer();
+
+                $eng->NewGradeEn($Cijfer, $Datum, $Toetsnaam, $leerlingID, $LerarenID, $mysql->connectCijfer());
+
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+        }
 
 
-        try {
+        if ($_GET['nederlands'] == true) {
+            try {
+                if (!empty($_POST['Cijfer']) && !empty($_POST['Datum'] && !empty($_POST['Toetsnaam'] && !empty($_POST['LeerlingID'] && !empty($_POST['LerarenID']))))) {
+                    $Cijfer = trim($_POST['Cijfer']);
+                    $Datum = trim($_POST['Datum']);
+                    $Toetsnaam = trim($_POST['Toetsnaam']);
+                    $leerlingID = trim($_POST['LeerlingID']);
+                    $LerarenID = trim($_POST['LerarenID']);
 
-            require_once("../../Classes/MysqlConnection.php");
-            $mysql = new MysqlConnection();
+                } else {
+                    throw new Exception("Een van de variabelen is leeg.");
+                }
 
-            require_once("EngelsCijferAdd.php");
-            $eng = new NieuwEngelsCijfer();
-            $eng->Newgrade($Cijfer, $Datum, $Toetsnaam, $leerlingID, $LerarenID);
 
-        } catch (Exception $e) {
-            echo $e->getMessage();
+                require_once("../../Classes/MysqlConnection.php");
+                $mysql = new MysqlConnection();
+
+                require_once("CijferAdd.php");
+                $eng = new NieuwEngelsCijfer();
+
+                $eng->NewGradeNl($Cijfer, $Datum, $Toetsnaam, $leerlingID, $LerarenID, $mysql->connectCijfer());
+
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
         }
     }
 }

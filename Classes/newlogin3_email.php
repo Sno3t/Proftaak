@@ -94,7 +94,17 @@ class Login2
                                 $_SESSION ['id'] = $id;
 
                             }
-                            header("location: ../StudentGrades/Index.php");
+                            echo "aaa";
+//                            header("location: makeaccount.php");
+//
+//                            if (headers_sent()) {
+//                                die("Error: headers already sent!");
+//                            } else {
+//                                header("Location: makeaccount.php", true);
+//                                exit();
+//                            }
+
+
                             exit;
 
                         } else {
