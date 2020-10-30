@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 require_once("../../Classes/MysqlConnection.php");
                 $mysql = new MysqlConnection();
 
-                require_once("CijferAdd.php");
+                require_once("../../Classes/Cijfers/CijferAdd.php");
                 $eng = new NieuwEngelsCijfer();
 
                 $eng->NewGradeEn($Cijfer, $Datum, $Toetsnaam, $leerlingID, $LerarenID, $mysql->connectCijfer());

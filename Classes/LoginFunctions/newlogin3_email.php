@@ -9,7 +9,7 @@ class Login2
     private $email;
 
 
-    public function __construct($Username, $Password, $Email, $Conn)
+    public function __construct(string $Username, string $Password, string $Email, object $Conn)
     {
         $this->username = $Username;
         $this->password = $Password;
@@ -57,7 +57,7 @@ class Login2
     }
 
 
-    function Login($username, $password, $email)
+    function Login(string $username, string $password, string $email)
     {
 
         $sql = "SELECT ID, Username, Password, Admin FROM login WHERE BINARY Username = ? AND Email = ?";

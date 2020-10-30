@@ -1,8 +1,8 @@
 <?php
-
+namespace EngelseTabel;
 class Engels
 {
-    public function EngelsResultaten($mysqli)
+    public function EngelsResultaten(object $mysqli)
     {
         $sql = "SELECT studenten.ID,studenten.Naam, engels.Cijfer, engels.toetsNaam, engels.Datum, engels.ID FROM ( engels INNER JOIN studenten ON engels.Studenten_ID = studenten.ID);";
         if ($stmt = $mysqli->prepare($sql)) {
@@ -29,14 +29,14 @@ class Engels
         <td>" . $cijfer . "</td>
         <td>" . $testname . "</td>
         <td>" . $datum . "</td>
-        <td><a href='../Pages/Edits/Wijzigen.php?id=" . $engelsID . "&Vak=Engels '>Wijzigen?</a></td>
+        <td><a href='../Edits/Wijzigen.php?id=" . $engelsID . "&Vak=Engels '>Wijzigen?</a></td>
        </tr>";
 
             }
             echo "
               <tr>
                 <td></td>
-                <td colspan='3'><a href='../Pages/Edits/toevoegen.php?engels=true'>Nieuw cijfer invoeren?</a></td>
+                <td colspan='3'><a href='../Edits/toevoegen.php?engels=true'>Nieuw cijfer invoeren?</a></td>
             </tr>
                 </tbody>
             </table>";

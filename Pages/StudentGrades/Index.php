@@ -37,7 +37,7 @@ if (isset($_GET['Engels'])) {
         $mysql = new MysqlConnection();
 
         require_once("../../Classes/Student/Engels.php");
-        $eng = new Engels();
+        $eng = new EngelseTabel\Engels();
         $eng->EngelsResultaten($mysql->connectCijfer());
 
     } catch (Exception $e) {

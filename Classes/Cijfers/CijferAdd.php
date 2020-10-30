@@ -1,8 +1,9 @@
 <?php
+
 class NieuwEngelsCijfer
 {
 
-    public function NewGradeEn($Cijfer, $Datum, $Toetsnaam, $studentenID, $LerarenID, $mysql)
+    public function NewGradeEn(int $Cijfer, string $Datum, string $Toetsnaam, int $studentenID, int $LerarenID, object $mysql)
     {
 
         $stmt = $mysql->prepare("INSERT INTO `engels`(`ID`, `Cijfer`, `Datum`, `toetsNaam`, `Studenten_ID`, `Leraren_ID`) VALUES (DEFAULT,?,?,?,?,?);");
@@ -27,7 +28,7 @@ class NieuwEngelsCijfer
 
     }
 
-    public function NewGradeNl($Cijfer, $Datum, $Toetsnaam, $studentenID, $LerarenID, $mysql)
+    public function NewGradeNl(int $Cijfer, $Datum, string $Toetsnaam, int $studentenID, int $LerarenID, object $mysql)
     {
 
         $stmt = $mysql->prepare("INSERT INTO `nederlands`(`ID`, `Cijfer`, `Datum`, `toetsNaam`, `Studenten_ID`, `Leraren_ID`) VALUES (DEFAULT,?,?,?,?,?);");
@@ -51,7 +52,7 @@ class NieuwEngelsCijfer
         echo "Cijfer succesvol toegevoegt!";
     }
 
-    public function NewGradeStudent($mysql, $studentID, $Cijfer, $Datum, $Toetsnaam, $IdLeraar, $vak)
+    public function NewGradeStudent(object $mysql, int $studentID, int $Cijfer, int $Datum, string $Toetsnaam, int $IdLeraar, string $vak)
     {
 
         if ($vak == "Engels") {
@@ -82,7 +83,7 @@ class NieuwEngelsCijfer
 
     }
 
-    public function ChangeGrade($mysql, $Cijfer, $ID, $vak)
+    public function ChangeGrade(object $mysql, int $Cijfer, int $ID, string $vak)
     {
 
         if ($vak == "Engels") {

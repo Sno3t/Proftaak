@@ -47,7 +47,6 @@ while ($stmt->fetch()) {
             <td> " . $naam . "</td>
             <td>" . round($nlcijfer,2) . "</td>
             <td>" . round($encijfer,2) . "</td>
-    
             <td><td colspan='3'><a href='StudentCijferAdd.php?id=" . $ID."'>Nieuw cijfer invoeren?</a></td></td>
        </tr>
 

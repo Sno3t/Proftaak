@@ -1,9 +1,10 @@
 <?php
+
 class Account
 {
 
 
-    public function Exists($conn, string $email)
+    public function Exists(object $conn, string $email)
     {
 
         $sql = "SELECT count(1) FROM login WHERE Email = ?";
@@ -26,7 +27,7 @@ class Account
 
     }
 
-    public function CreateAccount($name, $psswd, $email, $conn)
+    public function CreateAccount(string $name, string $psswd, string $email, object $conn)
     {
         $stmt = $conn->prepare("INSERT INTO `login`(`ID`, `Admin`, `Username`, `Password`, `Email`) VALUES (DEFAULT, 0, ?,?,?);");
 //        echo $conn -> error;die;
@@ -36,13 +37,9 @@ class Account
         $stmt->close();
 
 
-
-
-
     }
 
 
-
-
 }
+
 ?>

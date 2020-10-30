@@ -2,7 +2,7 @@
 
 class Nederlands
 {
-    public function NederlandsResultaten($mysqli)
+    public function NederlandsResultaten(object $mysqli)
     {
         $sql = "SELECT studenten.ID,studenten.Naam, nederlands.Cijfer, nederlands.toetsNaam, nederlands.Datum, nederlands.ID FROM ( nederlands INNER JOIN studenten ON nederlands.Studenten_ID = studenten.ID);";
         if ($stmt = $mysqli->prepare($sql)) {
@@ -29,14 +29,14 @@ class Nederlands
         <td>" . $cijfer . "</td>
         <td>" . $testname . "</td>
         <td>" . $datum . "</td>
-        <td><a href='../Pages/Edits/Wijzigen.php?id=" . $nederlandsID . "&Vak=Nederlands '>Wijzigen?</a></td>
+        <td><a href='../Edits/Wijzigen.php?id=" . $nederlandsID . "&Vak=Nederlands '>Wijzigen?</a></td>
        </tr>";
 
             }
             echo "
             <tr>
                 <td></td>
-                <td colspan='3'><a href='../Pages/Edits/toevoegen.php?nederlands=true'>Nieuw cijfer invoeren?</a></td>
+                <td colspan='3'><a href='../Edits/toevoegen.php?nederlands=true'>Nieuw cijfer invoeren?</a></td>
             </tr>
                 </tbody>
             </table>";
