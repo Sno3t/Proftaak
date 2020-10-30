@@ -1,17 +1,14 @@
 <?php
 
-class Nederlands
+class Engels
 {
-
-
-    public function NederlandsResultaten($mysqli)
+    public function EngelsResultaten($mysqli)
     {
-
-        $sql = "SELECT studenten.ID,studenten.Naam, nederlands.Cijfer, nederlands.toetsNaam, nederlands.Datum FROM ( nederlands INNER JOIN studenten ON nederlands.Studenten_ID = studenten.ID);";
+        $sql = "SELECT studenten.ID,studenten.Naam, engels.Cijfer, engels.toetsNaam, engels.Datum, engels.ID FROM ( engels INNER JOIN studenten ON engels.Studenten_ID = studenten.ID);";
         if ($stmt = $mysqli->prepare($sql)) {
             $stmt->execute();
 
-            $stmt->bind_result($ID, $naam, $cijfer, $testname, $datum);
+            $stmt->bind_result($ID, $naam, $cijfer, $testname, $datum, $engelsID);
 
             echo "
             <table>
@@ -28,18 +25,18 @@ class Nederlands
             while ($stmt->fetch()) {
                 echo "  
        <tr>
-        <td>" . $naam . "</td>
+        <td><a href='../../Classes/Student/Student.php?name=" . $ID . "'> " . $naam . "</a></td>
         <td>" . $cijfer . "</td>
         <td>" . $testname . "</td>
         <td>" . $datum . "</td>
-        <td><a href='../Edits/Wijzigen.php?id= " . $ID . " '>Wijzigen?</a></td>
+        <td><a href='../Pages/Edits/Wijzigen.php?id=" . $engelsID . "&Vak=Engels '>Wijzigen?</a></td>
        </tr>";
 
             }
             echo "
-            <tr>
+              <tr>
                 <td></td>
-                <td colspan='3'><a href='../Edits/toevoegen.php?nederlands=true'>Nieuw cijfer invoeren?</a></td>
+                <td colspan='3'><a href='../Pages/Edits/toevoegen.php?engels=true'>Nieuw cijfer invoeren?</a></td>
             </tr>
                 </tbody>
             </table>";

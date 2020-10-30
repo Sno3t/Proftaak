@@ -6,7 +6,6 @@
 </head>
 <body>
 
-
 <h1> Login</h1>
 
 <form action="" method="post">
@@ -33,7 +32,6 @@
 
 
 <?php
-error_reporting(E_ALL); ini_set('display_errors', 1);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -45,9 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once("../../Classes/MysqlConnection.php");
         $mysql = new MysqlConnection();
 
-        require_once("../../Classes/newlogin3_email.php");
+        require_once("../../Classes/LoginFunctions/newlogin3_email.php");
         $login = new Login2($name, $pass, $email, $mysql->connect());
-
 
         $login->Login($login->ChecksUsername(), $login->ChecksPassword(), $login->ChecksEmail());
 

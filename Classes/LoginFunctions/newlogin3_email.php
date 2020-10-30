@@ -94,7 +94,7 @@ class Login2
                                 $_SESSION ['id'] = $id;
 
                             }
-                            echo "aaa";
+                            // echo "aaa";
                             header("location: ../StudentGrades/Index.php");
 //
 //                            if (headers_sent()) {
@@ -130,4 +130,5 @@ class Login2
         mysqli_close($this->conn);
 
     }
+
 }

@@ -32,11 +32,10 @@ class Account
 //        echo $conn -> error;die;
         $stmt->bind_param('sss', $name, $psswd, $email);
 
-//        if (mysqli_stmt_num_rows($stmt) == 1) {
         $stmt->execute();
         $stmt->close();
 
-        //    }
+
 
 
 

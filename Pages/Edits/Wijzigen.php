@@ -24,18 +24,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['submit'])) {
 
 
-//        require_once("../../Classes/MysqlConnection.php");
-//        $mysql = new MysqlConnection();
-        $da = new mysqli("localhost", "php_user", "123", "cijfers"); // Om een of andere reden werkt de mysql connection class niet op deze file specifiek. "MYSQL server has gone away"
+        try {
+            require_once("../../Classes/MysqlConnection.php");
+            $mysql = new MysqlConnection();
 
-        $Cijfer = $_POST['Cijfer'];
-        $ID = $_GET['id'];
+            require_once("../../Classes/Cijfers/CijferAdd.php");
+            $change = new NieuwEngelsCijfer();
 
-        $stmt = $da->prepare("UPDATE engels SET Cijfer=? WHERE ID =?;");
+            $Cijfer = $_POST['Cijfer'];
+            $ID = $_GET['id'];
+            $Vak = $_GET['Vak'];
 
-        $stmt->bind_param('ss',  $Cijfer, $ID);
+            $change->ChangeGrade($mysql->connectCijfer(),$Cijfer, $ID, $Vak );
 
-        $stmt->execute();
+
+
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
 
     }
 }
