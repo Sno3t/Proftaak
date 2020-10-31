@@ -20,6 +20,11 @@
 </form>
 
 <?php
+session_start();
+if($_SESSION['loggedin'] == false){
+    header("location: ../LoginPage/newlogin1.php");
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['submit'])) {
 
@@ -29,15 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mysql = new MysqlConnection();
 
             require_once("../../Classes/Cijfers/CijferAdd.php");
-            $change = new NieuwEngelsCijfer();
+            $change = new Grades\NieuweCijfers();
 
             $Cijfer = $_POST['Cijfer'];
             $ID = $_GET['id'];
             $Vak = $_GET['Vak'];
 
             $change->ChangeGrade($mysql->connectCijfer(),$Cijfer, $ID, $Vak );
-
-
 
 
         } catch (Exception $e) {

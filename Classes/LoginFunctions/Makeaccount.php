@@ -1,5 +1,5 @@
 <?php
-
+namespace AccountCreation;
 class Account
 {
 

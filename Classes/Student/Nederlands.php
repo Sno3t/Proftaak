@@ -1,5 +1,5 @@
 <?php
-
+namespace NederlandsTabel;
 class Nederlands
 {
     public function NederlandsResultaten(object $mysqli)

@@ -1,6 +1,6 @@
 <?php
-
-class NieuwEngelsCijfer
+namespace Grades;
+class NieuweCijfers
 {
 
     public function NewGradeEn(int $Cijfer, string $Datum, string $Toetsnaam, int $studentenID, int $LerarenID, object $mysql)

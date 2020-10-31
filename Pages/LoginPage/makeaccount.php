@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mysql = new MysqlConnection();
 
         require_once("../../Classes/LoginFunctions/Makeaccount.php");
-        $account = new Account();
+        $account = new AccountCreation\Account();
 
 
          if ($account->Exists($mysql->connect(),$email) == false) {

@@ -6,10 +6,13 @@
 //INNER JOIN nederlands ON studenten.ID = nederlands.Studenten_ID);";
 
 
-$sql = "SELECT studenten.ID, Naam, AVG(nederlands.Cijfer) AS `NL Cijfer`, AVG(engels.Cijfer) AS `EN Cijfer`
-        FROM (( studenten
-        INNER JOIN engels ON studenten.ID = engels.Studenten_ID)
-        INNER JOIN nederlands ON studenten.ID = nederlands.Studenten_ID);";
+$sql = "SELECT studenten.ID, Naam, AVG(nederlands.Cijfer), AVG(engels.Cijfer)
+        FROM studenten
+        INNER JOIN nederlands
+        ON studenten.ID = nederlands.Studenten_ID
+        INNER JOIN engels
+        ON studenten.ID = engels.Studenten_ID
+        GROUP BY studenten.ID;";
 
 $Conn = new mysqli("localhost", "php_user", "123", "cijfers"); // Om een of andere reden werkt de mysql connection class niet op deze file specifiek. "MYSQL server has gone away"
 //$sql = "SELECT naam FROM studenten";
@@ -35,8 +38,8 @@ echo "
                 <thead>
                 <tr>
                     <td>Naam</td>
-                    <td>Average NL</td>
-                    <td>Average En</td>
+                    <td>Gemiddeld nl cijfer</td>
+                    <td>Gemiddeld en cijfer</td>
                 </tr>
                 </thead>
                 <tbody>";

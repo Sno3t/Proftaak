@@ -53,7 +53,7 @@ if (isset($_GET['Nederlands'])) {
         $mysql = new MysqlConnection();
 
         require_once("../../Classes/Student/Nederlands.php");
-        $nl = new Nederlands();
+        $nl = new  NederlandsTabel\Nederlands();
         $nl->NederlandsResultaten($mysql->connectCijfer());
 
     } catch (Exception $e) {

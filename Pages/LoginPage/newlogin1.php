@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mysql = new MysqlConnection();
 
         require_once("../../Classes/LoginFunctions/newlogin3_email.php");
-        $login = new Login2($name, $pass, $email, $mysql->connect());
+        $login = new LoginWithMail\Login2($name, $pass, $email, $mysql->connect());
 
         $login->Login($login->ChecksUsername(), $login->ChecksPassword(), $login->ChecksEmail());
 

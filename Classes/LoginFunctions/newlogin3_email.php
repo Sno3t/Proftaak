@@ -1,5 +1,5 @@
 <?php
-
+namespace LoginWithMail;
 class Login2
 {
 

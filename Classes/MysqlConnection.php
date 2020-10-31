@@ -1,5 +1,5 @@
 <?php
-
+//namespace Connection;
 class MysqlConnection
 {
 

@@ -37,7 +37,10 @@
 </form>
 
 <?php
-
+session_start();
+if($_SESSION['loggedin'] == false){
+    header("location: ../LoginPage/newlogin1.php");
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['submit'])) {
@@ -52,11 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             require_once("../../Classes/MysqlConnection.php");
             $mysql = new MysqlConnection();
 
-            require_once("../Edits/CijferAdd.php");
-            $eng = new NieuwEngelsCijfer();
-            $eng->NewGradeStudent($mysql->connectCijfer(), $id, $Cijfer, $Datum, $Toetsnaam,   $lerarenID, $Vak);
+            require_once("../../Classes/Cijfers/CijferAdd.php");
+            $eng = new Grades\NieuweCijfers();
+            $eng->NewGradeStudent($mysql->connectCijfer(), $id, $Cijfer, $Datum, $Toetsnaam, $lerarenID, $Vak);
 
-            Echo "Cijfer is succesvol toegevoegt";
+            echo "Cijfer is succesvol toegevoegt";
             header('Refresh: 5; Index.php');
         } catch (Exception $e) {
             echo $e->getMessage();

@@ -33,7 +33,10 @@
 </form>
 
 <?php
-
+session_start();
+if($_SESSION['loggedin'] == false){
+    header("location: ../LoginPage/newlogin1.php");
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['submit'])) {
@@ -57,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $mysql = new MysqlConnection();
 
                 require_once("../../Classes/Cijfers/CijferAdd.php");
-                $eng = new NieuwEngelsCijfer();
+                $eng = new Grades\NieuweCijfers();
 
                 $eng->NewGradeEn($Cijfer, $Datum, $Toetsnaam, $leerlingID, $LerarenID, $mysql->connectCijfer());
 
@@ -88,8 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 require_once("../../Classes/MysqlConnection.php");
                 $mysql = new MysqlConnection();
 
-                require_once("CijferAdd.php");
-                $eng = new NieuwEngelsCijfer();
+                require_once("../../Classes/Cijfers/CijferAdd.php");
+                $eng = new Grades\NieuweCijfers();
 
                 $eng->NewGradeNl($Cijfer, $Datum, $Toetsnaam, $leerlingID, $LerarenID, $mysql->connectCijfer());
 
