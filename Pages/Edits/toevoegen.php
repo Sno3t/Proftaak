@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     throw new Exception("Een van de variabelen is leeg.");
                 }
 
-
                 require_once("../../Classes/MysqlConnection.php");
                 $mysql = new MysqlConnection();
 
@@ -68,10 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 sleep("2");
                 header("location: ../StudentGrades/Index.php");
 
+
+
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
         }
+
 
         function Nederlands()
         {

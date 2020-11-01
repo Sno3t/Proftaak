@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <td>Email</td>
-            <td><input type="text" value="" name="email"></td>
+            <td><input type="email" value="" name="email"></td>
         </tr>
         <tr>
             <td></td>
